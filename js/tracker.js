@@ -10,6 +10,52 @@ let recordsCache = {};
 
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- SECURITY PROTOCOL (SHA-256 MILITARY GRADE) ---
+    // Este es el Hash de AWDCP2526. Aunque el repositorio sea público, es irreversible.
+    const SECRET_HASH = "b25c3413cb00ba580bcba9e9eb0bc4631cd085f1c97a220268ec3ba65191deac";
+
+    const modal = document.getElementById('security-modal');
+    const pwdInput = document.getElementById('auth-password');
+    const btnUnlock = document.getElementById('btn-unlock');
+    const btnGuest = document.getElementById('btn-guest');
+    const errorMsg = document.getElementById('auth-error');
+
+    // Función que transforma lo que usted escribe en la misma "hamburguesa" para comparar
+    async function attemptUnlock() {
+        const password = pwdInput.value;
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        
+        try {
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const inputHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            if (inputHash === SECRET_HASH) {
+                // Huella confirmada: Acceso concedido
+                modal.style.display = 'none';
+            } else {
+                throw new Error("Invalid Auth");
+            }
+        } catch (e) {
+            // Huella rechazada: Expulsión
+            errorMsg.style.display = 'block';
+            pwdInput.style.borderColor = '#ef4444';
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        }
+    }
+
+    btnUnlock.addEventListener('click', attemptUnlock);
+    pwdInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') attemptUnlock(); });
+    btnGuest.addEventListener('click', () => { window.location.href = 'dashboard.html'; });
+
+    btnUnlock.addEventListener('click', attemptUnlock);
+    pwdInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') attemptUnlock(); });
+    btnGuest.addEventListener('click', () => { window.location.href = 'dashboard.html'; });
+
     const dateInput = document.getElementById('class-date');
     dateInput.value = currentDate;
     dateInput.addEventListener('change', (e) => {

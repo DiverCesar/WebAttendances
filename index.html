@@ -9,6 +9,21 @@
 </head>
 <body id="app-body">
 
+    <div id="security-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 style="margin-top: 0; color: #f8fafc;">Restricted Access</h2>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">Control Panel requires authorization.</p>
+            
+            <input type="password" id="auth-password" placeholder="Enter override code..." autocomplete="off">
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="btn-unlock" class="btn-auth btn-auth-primary">Unlock System</button>
+                <button id="btn-guest" class="btn-auth btn-auth-secondary">Go to Dashboard</button>
+            </div>
+            <p id="auth-error" style="color: #ef4444; font-size: 0.85rem; margin-top: 15px; display: none;">Invalid code. Rerouting...</p>
+        </div>
+    </div>
+
     <header class="top-panel">
         <div class="date-control">
             <label for="class-date">Date:</label>
