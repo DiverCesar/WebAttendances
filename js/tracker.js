@@ -11,9 +11,7 @@ let recordsCache = {};
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- SECURITY PROTOCOL (SHA-256 MILITARY GRADE) ---
-    // Este es el Hash de AWDCP2526. Aunque el repositorio sea público, es irreversible.
-    const SECRET_HASH = "b25c3413cb00ba580bcba9e9eb0bc4631cd085f1c97a220268ec3ba65191deac";
+    const SECRET_HASH = "731a37b6df55c6840e4cd44f4e0d95ae4d2d2ed010f75c0422acb39e110a6297";
 
     const modal = document.getElementById('security-modal');
     const pwdInput = document.getElementById('auth-password');
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnGuest = document.getElementById('btn-guest');
     const errorMsg = document.getElementById('auth-error');
 
-    // Función que transforma lo que usted escribe en la misma "hamburguesa" para comparar
     async function attemptUnlock() {
         const password = pwdInput.value;
         const encoder = new TextEncoder();
@@ -33,13 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const inputHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 
             if (inputHash === SECRET_HASH) {
-                // Huella confirmada: Acceso concedido
                 modal.style.display = 'none';
             } else {
                 throw new Error("Invalid Auth");
             }
         } catch (e) {
-            // Huella rechazada: Expulsión
             errorMsg.style.display = 'block';
             pwdInput.style.borderColor = '#ef4444';
             setTimeout(() => {
