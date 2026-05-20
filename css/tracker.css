@@ -1,0 +1,241 @@
+/* --- VARIABLES --- */
+:root {
+    --bg-main: #0f172a;
+    --text-main: #f8fafc;
+    --accent-color: #3b82f6; /* Blue for normal */
+    --accent-hover: #2563eb;
+    --desk-border: #334155;
+    --badge-bg: #ef4444; /* Red for counter */
+}
+
+/* Extra Points Mode Variables (Triggered by JS adding .extra-mode to body) */
+body.extra-mode {
+    --bg-main: #1e1b4b; /* Deep Indigo */
+    --accent-color: #eab308; /* Gold */
+    --accent-hover: #ca8a04;
+    --desk-border: #4338ca;
+}
+
+/* --- BASE --- */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.5s ease;
+    min-height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* --- HEADER --- */
+.top-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    margin-bottom: 3rem;
+    border: 1px solid var(--desk-border);
+    backdrop-filter: blur(10px);
+}
+
+.date-control label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: #94a3b8;
+}
+
+.date-control input {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--desk-border);
+    background: #1e293b;
+    color: white;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.date-control input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.btn-normal-mode {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.extra-mode .btn-normal-mode {
+    color: #451a03; /* Dark brown text on gold */
+    box-shadow: 0 0 20px rgba(234, 179, 8, 0.4);
+    animation: pulse-glow 2s infinite;
+}
+
+/* --- CLASSROOM MAP --- */
+.classroom-map {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team-desk {
+    border: 2px dashed var(--desk-border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem 2rem 2rem;
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    transition: border-color 0.5s ease;
+}
+
+.desk-title {
+    position: absolute;
+    top: -25px;
+    left: 2rem;
+    background: var(--bg-main);
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #94a3b8;
+    transition: background-color 0.5s ease;
+}
+
+.student-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* --- STUDENT SEATS & BUTTONS --- */
+.student-seat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.last-name-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #cbd5e1;
+    text-align: center;
+}
+
+.circle-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+    background-color: #1e293b;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s, box-shadow 0.3s, border-color 0.5s;
+}
+
+.circle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.circle-btn:active {
+    transform: scale(0.95);
+}
+
+.id-number {
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.counter-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--badge-bg);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    opacity: 0; /* Hidden by default, JS will show it */
+    transition: opacity 0.2s;
+}
+
+.counter-badge.visible {
+    opacity: 1;
+}
+
+/* --- ANIMATIONS (Triggered by JS) --- */
+.animation-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    pointer-events: none; /* Let clicks pass through to the button */
+    z-index: 10;
+}
+
+/* Float Up (+1) */
+.floating-text-plus {
+    position: absolute;
+    color: #4ade80; /* Neon Green */
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    animation: floatUp 1s ease-out forwards;
+}
+
+/* Float Down (-1) */
+.floating-text-minus {
+    position: absolute;
+    color: #f87171; /* Light Red */
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    animation: floatDown 1s ease-out forwards;
+}
+
+/* Sparkle element */
+.sparkle-star {
+    position: absolute;
+    color: #fef08a;
+    font-size: 1.2rem;
+    animation: sparkleAnim 0.8s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -150%) scale(1.5); opacity: 0; }
+}
+
+@keyframes floatDown {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, 50%) scale(1.5); opacity: 0; }
+}
+
+@keyframes sparkleAnim {
+    0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+    50% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.5) rotate(180deg); opacity: 1; }
+    100% { transform: translate(calc(-50% + (var(--dx) * 1.5)), calc(-50% + (var(--dy) * 1.5))) scale(0) rotate(360deg); opacity: 0; }
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 10px rgba(234, 179, 8, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(234, 179, 8, 0.8); }
+    100% { box-shadow: 0 0 10px rgba(234, 179, 8, 0.4); }
+}

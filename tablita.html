@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Summary - Teacher Dashboard</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="teacher-dashboard">
+
+    <main class="table-container">
+
+        <header class="dashboard-header">
+            <h1>Participation Summary</h1>
+            <div class="date-filter">
+                <input type="date" id="dashboard-date">
+            </div>
+            <div id="real-time-alert" class="hidden-alert"></div>
+        </header>
+
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th class="col-student">Student</th>
+                    <th class="col-participation">Participations</th>
+                    <th class="col-extra">Extra Points</th>
+                </tr>
+            </thead>
+            <tbody id="summary-table-body">
+                </tbody>
+        </table>
+
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

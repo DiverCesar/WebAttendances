@@ -1,0 +1,157 @@
+/* --- BASE --- */
+body.teacher-dashboard {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f1f5f9; /* Light slate background */
+    color: #0f172a;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* --- MAIN CONTAINER --- */
+.table-container {
+    width: 100%;
+    max-width: 900px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- HEADER --- */
+.dashboard-header {
+    background-color: #1e293b;
+    color: white;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.date-filter input {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: white;
+    font-weight: bold;
+    outline: none;
+}
+
+.date-filter input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* --- REAL-TIME ALERT (Notification Toast) --- */
+.hidden-alert {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #22c55e;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.hidden-alert.show {
+    bottom: 20px;
+    opacity: 1;
+}
+
+/* --- TABLE --- */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.summary-table th,
+.summary-table td {
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.summary-table th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.col-student {
+    text-align: left !important;
+}
+
+.summary-table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.summary-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.summary-table td.col-student {
+    text-align: left;
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+/* --- BADGES --- */
+.badge-blue {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 1rem;
+    display: inline-block;
+    min-width: 25px;
+}
+
+.badge-gold {
+    background-color: #fef3c7;
+    color: #b45309;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 1rem;
+    display: inline-block;
+    min-width: 25px;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
+}
+
+/* Highlight row animation when updated in real-time */
+@keyframes highlight-row {
+    0% { background-color: #dcfce7; }
+    100% { background-color: transparent; }
+}
+
+.row-updated {
+    animation: highlight-row 2s ease-out;
+}
