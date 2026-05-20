@@ -255,13 +255,24 @@ body.extra-mode .btn-normal-mode {
     }
 }
 
-/* 2. Mediana (Tablets en vertical) - Max 992px */
+/* 2. Mediana (Tablets en vertical y Celulares) - Max 992px */
 @media (max-width: 992px) {
     .classroom-map {
-        /* Pasa de 2 columnas a 1 sola columna centrada */
-        grid-template-columns: 1fr;
+        /* Pasamos a Flexbox en columna para poder reordenar los equipos */
+        display: flex;
+        flex-direction: column;
         max-width: 600px; 
+        margin: 0 auto;
     }
+    
+    /* ¡AQUÍ ESTÁ LA MAGIA! Reordenamos los equipos del 1 al 6 de arriba a abajo */
+    #team-1 { order: 1; }
+    #team-2 { order: 2; }
+    #team-3 { order: 3; }
+    #team-4 { order: 4; }
+    #team-5 { order: 5; }
+    #team-6 { order: 6; }
+
     .top-panel {
         padding: 1.5rem;
     }
@@ -273,7 +284,6 @@ body.extra-mode .btn-normal-mode {
         padding: 1rem;
     }
     
-    /* El header se apila hacia abajo */
     .top-panel {
         flex-direction: column;
         gap: 1.5rem;
@@ -288,7 +298,6 @@ body.extra-mode .btn-normal-mode {
         width: 100%;
     }
     
-    /* Forzamos a que los botones del panel ocupen todo el ancho y quitamos el margen en línea (inline style) */
     .mode-control button, 
     .mode-control a {
         width: 100%;
@@ -296,12 +305,10 @@ body.extra-mode .btn-normal-mode {
         box-sizing: border-box;
     }
 
-    /* Reducimos la mesa para que entre sin salirse de la pantalla */
     .team-desk {
         padding: 2.5rem 1rem 1.5rem 1rem;
     }
     
-    /* Juntamos los estudiantes y reducimos sus círculos */
     .student-row {
         gap: 0.8rem;
     }

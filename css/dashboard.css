@@ -169,24 +169,35 @@ body.teacher-dashboard {
 
 /* Celular (Smartphones) - Max 768px */
 @media (max-width: 768px) {
+    /* FORZAMOS LA PILA VERTICAL PARA EVITAR QUE EL BOTÓN ROMPA LA PANTALLA */
+    body.teacher-dashboard {
+        flex-direction: column;
+        padding: 1rem 0.5rem;
+    }
+
     .dashboard-header {
         flex-direction: column;
-        gap: 1.5rem;
-        padding: 1.5rem 1rem;
+        gap: 1rem;
+        padding: 1rem;
         text-align: center;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.2rem;
     }
     
     .summary-table th, 
     .summary-table td {
-        padding: 1rem 0.5rem;
-        font-size: 0.9rem;
+        /* Reducimos drásticamente los paddings X y Y para celulares */
+        padding: 0.75rem 0.25rem;
+        font-size: 0.8rem;
     }
     
     .summary-table td.col-student {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
     
-    /* Controlar el botón "Back" que tiene estilos en línea absolutos */
+    /* Reposicionamos el botón Back para que sea un botón superior normal */
     body.teacher-dashboard > a {
         position: relative !important;
         top: 0 !important;
@@ -196,9 +207,11 @@ body.teacher-dashboard {
         text-align: center;
         width: 100%;
         box-sizing: border-box;
+        padding: 0.75rem !important;
+        font-size: 0.9rem;
     }
     
     .table-container {
-        margin-top: 10px !important;
+        margin-top: 0 !important;
     }
 }
