@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Summary - Teacher Dashboard</title>
-
     <link rel="stylesheet" href="css/dashboard.css">
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="teacher-dashboard">
 
-    <main class="table-container">
+    <a href="index.html" style="position: absolute; top: 20px; left: 20px; padding: 0.75rem 1.5rem; background: #1e293b; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-family: sans-serif;">
+        ⬅ Back to Control Panel
+    </a>
 
+    <main class="table-container" style="margin-top: 40px;">
         <header class="dashboard-header">
             <h1>Participation Summary</h1>
             <div class="date-filter">
@@ -32,7 +33,6 @@
             <tbody id="summary-table-body">
                 </tbody>
         </table>
-
     </main>
 
     <script src="js/dashboard.js"></script>

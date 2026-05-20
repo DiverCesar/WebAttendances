@@ -1,7 +1,7 @@
 // --- SUPABASE CONFIGURATION ---
 const SUPABASE_URL = 'https://muohbhsatkbopsauykqb.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_OLENpIjsq7qlM2p6YsC18A_tH4723Wp';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 let currentDate = new Date().toISOString().split('T')[0];
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- CORE FUNCTIONS ---
 async function loadDashboardData() {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
     .from('class_records')
     .select('*')
     .eq('record_date', currentDate);
@@ -56,26 +56,27 @@ function renderTable(records) {
             id: id,
             lastName: studentCatalog[id],
             participations: record.participations,
-            extraPoints: record.extra_points,
-            // Logic: Extra points weight more for sorting
-            total: record.participations + (record.extra_points * 2)
+            extraPoints: record.extra_points
         };
     });
 
-    // Sort by Total (Descending)
-    summaryList.sort((a, b) => b.total - a.total);
+    // Sort by Participations (Descending). If tied, sort by ID (Ascending)
+    summaryList.sort((a, b) => {
+        if (b.participations !== a.participations) {
+            return b.participations - a.participations;
+        }
+        return a.id - b.id;
+    });
 
-    // Render Rows
+    // Render Rows (Showing everyone, including zeros)
     summaryList.forEach(student => {
-        if (student.total === 0) return; // Keep table clean, hide zero records
-
         const tr = document.createElement('tr');
-        tr.id = `row-${student.id}`; // Crucial ID for real-time highlighting
+        tr.id = `row-${student.id}`; 
 
         tr.innerHTML = `
         <td class="col-student">${student.lastName}</td>
-        <td><span class="${student.participations > 0 ? 'badge-blue' : ''}">${student.participations > 0 ? student.participations : '-'}</span></td>
-        <td><span class="${student.extraPoints > 0 ? 'badge-gold' : ''}">${student.extraPoints > 0 ? student.extraPoints : '-'}</span></td>
+        <td><span class="${student.participations > 0 ? 'badge-blue' : ''}">${student.participations}</span></td>
+        <td><span class="${student.extraPoints > 0 ? 'badge-gold' : ''}">${student.extraPoints}</span></td>
         `;
         tbody.appendChild(tr);
     });
@@ -83,16 +84,13 @@ function renderTable(records) {
 
 // --- REAL-TIME LISTENER ---
 function subscribeToRealTimeUpdates() {
-    supabase
+    supabaseClient
     .channel('public:class_records')
     .on('postgres_changes', { event: '*', schema: 'public', table: 'class_records' }, payload => {
-        // Check if the change corresponds to the date currently being viewed
         const updatedRecord = payload.new;
 
         if (updatedRecord && updatedRecord.record_date === currentDate) {
-            // Reload data to ensure proper sorting
             loadDashboardData().then(() => {
-                // Trigger visual feedback once table is re-rendered
                 highlightRow(updatedRecord.student_id);
                 showToastAlert(studentCatalog[updatedRecord.student_id]);
             });
@@ -106,7 +104,7 @@ function highlightRow(studentId) {
     const row = document.getElementById(`row-${studentId}`);
     if (row) {
         row.classList.remove('row-updated');
-        void row.offsetWidth; // Force DOM reflow to restart animation
+        void row.offsetWidth; 
         row.classList.add('row-updated');
     }
 }
@@ -116,7 +114,6 @@ function showToastAlert(studentName) {
     alertBox.innerText = `Record updated for ${studentName}`;
     alertBox.classList.add('show');
 
-    // Hide after 3 seconds
     setTimeout(() => {
         alertBox.classList.remove('show');
     }, 3000);

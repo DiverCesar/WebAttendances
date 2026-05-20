@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spatial Tracker - Control Panel</title>
-
     <link rel="stylesheet" href="css/tracker.css">
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body id="app-body">
@@ -16,207 +14,69 @@
             <label for="class-date">Date:</label>
             <input type="date" id="class-date">
         </div>
-
+        
         <div class="mode-control">
             <button id="btn-toggle-mode" class="btn-normal-mode">
                 CURRENT MODE: PARTICIPATION
             </button>
+            <a href="dashboard.html" class="nav-btn" style="margin-left: 15px; padding: 0.75rem 1.5rem; background: #475569; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; border: 2px solid #94a3b8;">
+                Go to Dashboard ➔
+            </a>
         </div>
     </header>
 
     <main class="classroom-map" id="classroom-map">
 
-        <section class="team-desk" id="team-1">
-            <h3 class="desk-title">Team 1: Biconoirs</h3>
-            <div class="student-row">
-
-                <div class="student-seat" id="seat-3">
-                    <span class="last-name-label">CALDERON</span>
-                    <button class="circle-btn" id="btn-std-3" data-id="3">
-                        <span class="id-number">3</span>
-                        <span class="counter-badge" id="counter-3">0</span>
-                        <div class="animation-container" id="anim-3"></div> </button>
-                </div>
-
-                <div class="student-seat" id="seat-2">
-                    <span class="last-name-label">ANDINO</span>
-                    <button class="circle-btn" id="btn-std-2" data-id="2">
-                        <span class="id-number">2</span>
-                        <span class="counter-badge" id="counter-2">0</span>
-                        <div class="animation-container" id="anim-2"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-1">
-                    <span class="last-name-label">ALVARADO</span>
-                    <button class="circle-btn" id="btn-std-1" data-id="1">
-                        <span class="id-number">1</span>
-                        <span class="counter-badge" id="counter-1">0</span>
-                        <div class="animation-container" id="anim-1"></div>
-                    </button>
-                </div>
-
-            </div>
-        </section>
-
         <section class="team-desk" id="team-2">
             <h3 class="desk-title">Team 2: Fabula Dental</h3>
             <div class="student-row">
+                <div class="student-seat" id="seat-6"><span class="last-name-label">DIAZ</span><button class="circle-btn" id="btn-std-6" data-id="6"><span class="id-number">6</span><span class="counter-badge" id="counter-6">0</span><div class="animation-container" id="anim-6"></div></button></div>
+                <div class="student-seat" id="seat-5"><span class="last-name-label">CHUQUI</span><button class="circle-btn" id="btn-std-5" data-id="5"><span class="id-number">5</span><span class="counter-badge" id="counter-5">0</span><div class="animation-container" id="anim-5"></div></button></div>
+                <div class="student-seat" id="seat-4"><span class="last-name-label">CARDENAS</span><button class="circle-btn" id="btn-std-4" data-id="4"><span class="id-number">4</span><span class="counter-badge" id="counter-4">0</span><div class="animation-container" id="anim-4"></div></button></div>
+            </div>
+        </section>
 
-                <div class="student-seat" id="seat-6">
-                    <span class="last-name-label">DIAZ</span>
-                    <button class="circle-btn" id="btn-std-6" data-id="6">
-                        <span class="id-number">6</span>
-                        <span class="counter-badge" id="counter-6">0</span>
-                        <div class="animation-container" id="anim-6"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-5">
-                    <span class="last-name-label">CHUQUI</span>
-                    <button class="circle-btn" id="btn-std-5" data-id="5">
-                        <span class="id-number">5</span>
-                        <span class="counter-badge" id="counter-5">0</span>
-                        <div class="animation-container" id="anim-5"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-4">
-                    <span class="last-name-label">CARDENAS</span>
-                    <button class="circle-btn" id="btn-std-4" data-id="4">
-                        <span class="id-number">4</span>
-                        <span class="counter-badge" id="counter-4">0</span>
-                        <div class="animation-container" id="anim-4"></div>
-                    </button>
-                </div>
-
+        <section class="team-desk" id="team-1">
+            <h3 class="desk-title">Team 1: Biconoirs</h3>
+            <div class="student-row">
+                <div class="student-seat" id="seat-3"><span class="last-name-label">CALDERON</span><button class="circle-btn" id="btn-std-3" data-id="3"><span class="id-number">3</span><span class="counter-badge" id="counter-3">0</span><div class="animation-container" id="anim-3"></div></button></div>
+                <div class="student-seat" id="seat-2"><span class="last-name-label">ANDINO</span><button class="circle-btn" id="btn-std-2" data-id="2"><span class="id-number">2</span><span class="counter-badge" id="counter-2">0</span><div class="animation-container" id="anim-2"></div></button></div>
+                <div class="student-seat" id="seat-1"><span class="last-name-label">ALVARADO</span><button class="circle-btn" id="btn-std-1" data-id="1"><span class="id-number">1</span><span class="counter-badge" id="counter-1">0</span><div class="animation-container" id="anim-1"></div></button></div>
             </div>
         </section>
 
         <section class="team-desk" id="team-3">
             <h3 class="desk-title">Team 3: Phisioterapy</h3>
             <div class="student-row">
-
-                <div class="student-seat" id="seat-7">
-                    <span class="last-name-label">ERAZO</span>
-                    <button class="circle-btn" id="btn-std-7" data-id="7">
-                        <span class="id-number">7</span>
-                        <span class="counter-badge" id="counter-7">0</span>
-                        <div class="animation-container" id="anim-7"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-8">
-                    <span class="last-name-label">GALARZA</span>
-                    <button class="circle-btn" id="btn-std-8" data-id="8">
-                        <span class="id-number">8</span>
-                        <span class="counter-badge" id="counter-8">0</span>
-                        <div class="animation-container" id="anim-8"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-9">
-                    <span class="last-name-label">GUALOTUÑA</span>
-                    <button class="circle-btn" id="btn-std-9" data-id="9">
-                        <span class="id-number">9</span>
-                        <span class="counter-badge" id="counter-9">0</span>
-                        <div class="animation-container" id="anim-9"></div>
-                    </button>
-                </div>
-
+                <div class="student-seat" id="seat-7"><span class="last-name-label">ERAZO</span><button class="circle-btn" id="btn-std-7" data-id="7"><span class="id-number">7</span><span class="counter-badge" id="counter-7">0</span><div class="animation-container" id="anim-7"></div></button></div>
+                <div class="student-seat" id="seat-8"><span class="last-name-label">GALARZA</span><button class="circle-btn" id="btn-std-8" data-id="8"><span class="id-number">8</span><span class="counter-badge" id="counter-8">0</span><div class="animation-container" id="anim-8"></div></button></div>
+                <div class="student-seat" id="seat-9"><span class="last-name-label">GUALOTUÑA</span><button class="circle-btn" id="btn-std-9" data-id="9"><span class="id-number">9</span><span class="counter-badge" id="counter-9">0</span><div class="animation-container" id="anim-9"></div></button></div>
             </div>
         </section>
 
         <section class="team-desk" id="team-4">
             <h3 class="desk-title">Team 4: Panda</h3>
             <div class="student-row">
-
-                <div class="student-seat" id="seat-10">
-                    <span class="last-name-label">MOLINA</span>
-                    <button class="circle-btn" id="btn-std-10" data-id="10">
-                        <span class="id-number">10</span>
-                        <span class="counter-badge" id="counter-10">0</span>
-                        <div class="animation-container" id="anim-10"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-11">
-                    <span class="last-name-label">MONGE</span>
-                    <button class="circle-btn" id="btn-std-11" data-id="11">
-                        <span class="id-number">11</span>
-                        <span class="counter-badge" id="counter-11">0</span>
-                        <div class="animation-container" id="anim-11"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-12">
-                    <span class="last-name-label">OBANDO</span>
-                    <button class="circle-btn" id="btn-std-12" data-id="12">
-                        <span class="id-number">12</span>
-                        <span class="counter-badge" id="counter-12">0</span>
-                        <div class="animation-container" id="anim-12"></div>
-                    </button>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="team-desk" id="team-5">
-            <h3 class="desk-title">Team 5: Accounting</h3>
-            <div class="student-row">
-
-                <div class="student-seat" id="seat-15">
-                    <span class="last-name-label">SABANDO</span>
-                    <button class="circle-btn" id="btn-std-15" data-id="15">
-                        <span class="id-number">15</span>
-                        <span class="counter-badge" id="counter-15">0</span>
-                        <div class="animation-container" id="anim-15"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-14">
-                    <span class="last-name-label">RODRIGUEZ</span>
-                    <button class="circle-btn" id="btn-std-14" data-id="14">
-                        <span class="id-number">14</span>
-                        <span class="counter-badge" id="counter-14">0</span>
-                        <div class="animation-container" id="anim-14"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-13">
-                    <span class="last-name-label">QUIROGA</span>
-                    <button class="circle-btn" id="btn-std-13" data-id="13">
-                        <span class="id-number">13</span>
-                        <span class="counter-badge" id="counter-13">0</span>
-                        <div class="animation-container" id="anim-13"></div>
-                    </button>
-                </div>
-
+                <div class="student-seat" id="seat-10"><span class="last-name-label">MOLINA</span><button class="circle-btn" id="btn-std-10" data-id="10"><span class="id-number">10</span><span class="counter-badge" id="counter-10">0</span><div class="animation-container" id="anim-10"></div></button></div>
+                <div class="student-seat" id="seat-11"><span class="last-name-label">MONGE</span><button class="circle-btn" id="btn-std-11" data-id="11"><span class="id-number">11</span><span class="counter-badge" id="counter-11">0</span><div class="animation-container" id="anim-11"></div></button></div>
+                <div class="student-seat" id="seat-12"><span class="last-name-label">OBANDO</span><button class="circle-btn" id="btn-std-12" data-id="12"><span class="id-number">12</span><span class="counter-badge" id="counter-12">0</span><div class="animation-container" id="anim-12"></div></button></div>
             </div>
         </section>
 
         <section class="team-desk" id="team-6">
             <h3 class="desk-title">Team 6: Dance Acad</h3>
             <div class="student-row">
+                <div class="student-seat" id="seat-17"><span class="last-name-label">VILLARREAL</span><button class="circle-btn" id="btn-std-17" data-id="17"><span class="id-number">17</span><span class="counter-badge" id="counter-17">0</span><div class="animation-container" id="anim-17"></div></button></div>
+                <div class="student-seat" id="seat-16"><span class="last-name-label">TORRES</span><button class="circle-btn" id="btn-std-16" data-id="16"><span class="id-number">16</span><span class="counter-badge" id="counter-16">0</span><div class="animation-container" id="anim-16"></div></button></div>
+            </div>
+        </section>
 
-                <div class="student-seat" id="seat-17">
-                    <span class="last-name-label">VILLARREAL</span>
-                    <button class="circle-btn" id="btn-std-17" data-id="17">
-                        <span class="id-number">17</span>
-                        <span class="counter-badge" id="counter-17">0</span>
-                        <div class="animation-container" id="anim-17"></div>
-                    </button>
-                </div>
-
-                <div class="student-seat" id="seat-16">
-                    <span class="last-name-label">TORRES</span>
-                    <button class="circle-btn" id="btn-std-16" data-id="16">
-                        <span class="id-number">16</span>
-                        <span class="counter-badge" id="counter-16">0</span>
-                        <div class="animation-container" id="anim-16"></div>
-                    </button>
-                </div>
-
+        <section class="team-desk" id="team-5">
+            <h3 class="desk-title">Team 5: Accounting</h3>
+            <div class="student-row">
+                <div class="student-seat" id="seat-15"><span class="last-name-label">SABANDO</span><button class="circle-btn" id="btn-std-15" data-id="15"><span class="id-number">15</span><span class="counter-badge" id="counter-15">0</span><div class="animation-container" id="anim-15"></div></button></div>
+                <div class="student-seat" id="seat-14"><span class="last-name-label">RODRIGUEZ</span><button class="circle-btn" id="btn-std-14" data-id="14"><span class="id-number">14</span><span class="counter-badge" id="counter-14">0</span><div class="animation-container" id="anim-14"></div></button></div>
+                <div class="student-seat" id="seat-13"><span class="last-name-label">QUIROGA</span><button class="circle-btn" id="btn-std-13" data-id="13"><span class="id-number">13</span><span class="counter-badge" id="counter-13">0</span><div class="animation-container" id="anim-13"></div></button></div>
             </div>
         </section>
 
