@@ -239,3 +239,83 @@ body.extra-mode .btn-normal-mode {
     50% { box-shadow: 0 0 25px rgba(234, 179, 8, 0.8); }
     100% { box-shadow: 0 0 10px rgba(234, 179, 8, 0.4); }
 }
+
+/* =========================================
+   NUEVO: BLOQUE RESPONSIVE (4 PANTALLAS)
+   ========================================= */
+
+/* 1. Larga (Laptops y Tablets en horizontal) - Max 1200px */
+@media (max-width: 1200px) {
+    .classroom-map {
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    .student-row {
+        gap: 1.2rem;
+    }
+}
+
+/* 2. Mediana (Tablets en vertical) - Max 992px */
+@media (max-width: 992px) {
+    .classroom-map {
+        /* Pasa de 2 columnas a 1 sola columna centrada */
+        grid-template-columns: 1fr;
+        max-width: 600px; 
+    }
+    .top-panel {
+        padding: 1.5rem;
+    }
+}
+
+/* 3. Celular (Smartphones) - Max 768px */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    /* El header se apila hacia abajo */
+    .top-panel {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .mode-control {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+    
+    /* Forzamos a que los botones del panel ocupen todo el ancho y quitamos el margen en línea (inline style) */
+    .mode-control button, 
+    .mode-control a {
+        width: 100%;
+        margin-left: 0 !important;
+        box-sizing: border-box;
+    }
+
+    /* Reducimos la mesa para que entre sin salirse de la pantalla */
+    .team-desk {
+        padding: 2.5rem 1rem 1.5rem 1rem;
+    }
+    
+    /* Juntamos los estudiantes y reducimos sus círculos */
+    .student-row {
+        gap: 0.8rem;
+    }
+    
+    .circle-btn {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .id-number {
+        font-size: 1.4rem;
+    }
+    
+    .last-name-label {
+        font-size: 0.75rem;
+    }
+}
